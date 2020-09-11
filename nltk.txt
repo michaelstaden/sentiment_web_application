@@ -1,1 +1,1 @@
-WordNetLemmatizer
+stem.WordNetLemmatizer

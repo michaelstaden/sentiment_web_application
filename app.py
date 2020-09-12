@@ -1,8 +1,8 @@
 #import libraries
 import numpy as np
 import re
-import nltk
-from nltk.stem import WordNetLemmatizer
+#import nltk
+#from nltk.stem import WordNetLemmatizer
 from flask import Flask, render_template,request
 import pickle#Initialize the flask App
 app = Flask(__name__)
@@ -49,7 +49,7 @@ def preprocess(textdata):
     processedText = []
     
     # Create Lemmatizer and Stemmer.
-    wordLemm = WordNetLemmatizer()
+    #wordLemm = WordNetLemmatizer()
     
     # Defining regex patterns.
     urlPattern        = r"((http://)[^ ]*|(https://)[^ ]*|( www\.)[^ ]*)"
@@ -79,7 +79,7 @@ def preprocess(textdata):
         if word not in stopwordlist:
             if len(word)>1:
                 # Lemmatizing the word.
-                word = wordLemm.lemmatize(word)
+                #word = wordLemm.lemmatize(word)
                 tweetwords += (word+' ')
             
         # processedText.append(tweetwords)

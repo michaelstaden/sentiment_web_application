@@ -1,8 +1,8 @@
 #import libraries
 import numpy as np
 import re
-#import nltk
-#from nltk.stem import WordNetLemmatizer
+import nltk
+from nltk.stem import WordNetLemmatizer
 from flask import Flask, render_template,request
 import pickle#Initialize the flask App
 app = Flask(__name__)
@@ -49,7 +49,7 @@ def preprocess(textdata):
     processedText = []
     
     # Create Lemmatizer and Stemmer.
-    #wordLemm = WordNetLemmatizer()
+    wordLemm = WordNetLemmatizer()
     
     # Defining regex patterns.
     urlPattern        = r"((http://)[^ ]*|(https://)[^ ]*|( www\.)[^ ]*)"
@@ -79,11 +79,13 @@ def preprocess(textdata):
         if word not in stopwordlist:
             if len(word)>1:
                 # Lemmatizing the word.
-                #word = wordLemm.lemmatize(word)
+                word = wordLemm.lemmatize(word)
                 tweetwords += (word+' ')
             
         # processedText.append(tweetwords)
-
+        text_file = open('tweetwords.txt', 'w')
+        n = text_file.write(tweetwords)
+        text_file.close()
     return tweetwords
 
 vectorizer, LRmodel = load_models()
@@ -101,7 +103,7 @@ def predict():
     input_preprocessed = preprocess(input_text)
     textdata = vectorizer.transform([input_preprocessed])   
     prediction = LRmodel.predict(textdata)
-    return render_template('index.html', prediction_text='Sentiment is: {}'.format(prediction[0]))
+    return render_template('index.html', output_text='Sentiment is: ', prediction='{}'.format(prediction[0]))
 
 if __name__ == "__main__":
     app.run(debug=True)

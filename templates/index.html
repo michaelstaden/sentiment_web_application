@@ -13,22 +13,36 @@
 </head>
 
 <body>
-
 <div class="login">
 	<h1>Sentiment Analysis</h1>
 		<span style="font-style: italic;">by Michael</span>
 		<h3>Hey, please enter some text for sentiment analysis</h3>
+		<span style="font-style: italic; font-size: 10pt;">Examples:
+			<br>"I believe we can reduce global warming"
+			<br>"I don't like Pizza"</br></br></span>
+
 		
 	<form action="{{ url_for('predict')}}"method="post">
 		<input type="text" name="input_text" placeholder="Text" required="required" />
 		
-		<button type="submit" class="btn">Analyze sentiment</button>
+		<button type="submit" class="btn" style="background-color: rgb(253, 157, 32);">Analyze sentiment</button>
 	</form>
 	
 	<br>
 	<br>
-	{{ prediction_text }}
-	
+	<span style="font-size: 14pt;">{{ output_text }}</span>
+	<span style="font-style: italic; font-size: 18pt; color: rgb(253, 157, 32);">{{ prediction }}</span>
+
+	<br>
+	<br>
+	<br>
+
+	<p>
+		<span style="font-size: 10pt;">
+			If you're interested in how the machine learning model was trained, check out my <a href="https://github.com/michaelstaden/sentiment_web_application/blob/master/Sentiment_Analysis_Twitter.ipynb" style="color: rgb(253, 157, 32)">github</a>
+		</span>
+	</p>
+
 </div>
 
 </body>

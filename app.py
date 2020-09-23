@@ -65,7 +65,7 @@ def preprocess(textdata):
     tweet = re.sub(urlPattern,' ',tweet)#re.sub(urlPattern,' URL',tweet)
     # Replace all emojis.
     for emoji in emojis.keys():
-        tweet = tweet.replace(emoji, "EMOJI" + emojis[emoji])        
+        tweet = tweet.replace(emoji, "EMOJI " + emojis[emoji])        
     # Replace @USERNAME to 'USER'.
     tweet = re.sub(userPattern,' ', tweet)#tweet = re.sub(userPattern,' USER', tweet)         
     # Replace all non alphabets.
